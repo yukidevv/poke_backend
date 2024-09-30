@@ -6,16 +6,22 @@ import requests
 def main():
   base_url = 'https://pokeapi.co/api/v2/'
   add_url = 'pokemon/'
-  id = '1'
+  id = '2'
 
   response = requests.get(base_url + add_url + id)
   response = response.json()
+  #画像
+  print(response['sprites']['front_default'])
+  #高さ
   print(response['height'])
+  #重さ
   print(response['weight'])
   result = get_pokemon_data_japanese(response['name'])
   if isinstance(result, tuple):
     japanese_name, description = result
+      #日本語名
     print(japanese_name)
+      #説明
     print(description)
 
 def get_pokemon_data_japanese(pokemon_name):
