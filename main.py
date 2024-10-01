@@ -3,12 +3,13 @@
 from fastapi import FastAPI
 import requests
 
-def main():
-  base_url = 'https://pokeapi.co/api/v2/'
-  add_url = 'pokemon/'
-  id = '2'
+base_url = 'https://pokeapi.co/api/v2/'
+english_url = 'pokemon/'
+japanese_url = 'pokemon-species/'
 
-  response = requests.get(base_url + add_url + id)
+def main():
+  id = '2'
+  response = requests.get(base_url + english_url+ id)
   response = response.json()
   #画像
   print(response['sprites']['front_default'])
@@ -25,8 +26,7 @@ def main():
     print(description)
 
 def get_pokemon_data_japanese(pokemon_name):
-    url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon_name}"
-    response = requests.get(url)
+    response = requests.get(base_url + japanese_url + pokemon_name)
     if response.status_code == 200:
       data = response.json()
 
